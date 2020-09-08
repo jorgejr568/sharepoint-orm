@@ -1,4 +1,4 @@
-import BuilderFactory from './factories/builder'
+import { BuilderFactory } from './factories/builder'
 
 export * from './builder'
 export * from './protocols'
