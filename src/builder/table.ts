@@ -1,4 +1,3 @@
-import { AxiosInstance } from 'axios'
 import { IClient, IOrder, ITable, ITableRows, IWhere } from '../protocols'
 import {
   DeleteStrategy,

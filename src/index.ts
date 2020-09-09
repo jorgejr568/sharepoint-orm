@@ -1,8 +1,5 @@
-import { BuilderFactory } from './factories'
-
 export * from './builder'
+export * from './auth'
 export * from './protocols'
 export * from './strategies'
 export * from './factories'
-
-export default BuilderFactory

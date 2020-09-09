@@ -1,6 +1,4 @@
-import { IUser } from '../protocols/auth/IUser'
-import { IUserModel } from '../protocols/auth/IUserModel'
-import { IClient } from '../protocols'
+import { IUserModel, IUser, IClient } from '../protocols'
 import { SPUserNormalizer } from '../normalizers'
 
 export class User implements IUser {
