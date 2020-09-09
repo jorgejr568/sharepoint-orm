@@ -1,16 +1,31 @@
 import { ITableRows } from './ITableRows'
-import { IClient } from '..'
+import { IClient, IOrder, IWhere } from '..'
 
 export interface ITable {
+  _limit: Number
+  _offset: Number
+  _select: string[]
+  _expand: string[]
+  _where: IWhere[]
+  _order?: IOrder
+  readonly _table: string
+
   /**
    * GETTERS
    */
   client(): IClient
 
   /**
+   * SETTERS
+   */
+  authorization(token: string): ITable
+
+  /**
    * SELECT
    */
   select(columns: string[]): ITable
+
+  expand(lists: string[]): ITable
 
   /**
    * ORDER

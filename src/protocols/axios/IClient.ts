@@ -5,6 +5,9 @@ export type TInstance = 'sp' | 'SP' | 'api' | 'API'
 
 export interface IClient {
   readonly clientConfig: IConfig
+  _authorization?: string
+
+  authorization(token: string): void
 
   request(
     instance: TInstance,

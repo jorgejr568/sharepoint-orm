@@ -5,6 +5,7 @@ export class Client implements IClient {
   private readonly spAxiosInstance: AxiosInstance
   private readonly apiAxiosInstance: AxiosInstance
   readonly clientConfig: IConfig
+  _authorization?: string
 
   constructor(clientConfig: IConfig) {
     this.clientConfig = clientConfig
@@ -14,6 +15,10 @@ export class Client implements IClient {
     this.spAxiosInstance = axios.create({
       baseURL: clientConfig.spUrl,
     })
+  }
+
+  authorization(token: string) {
+    this._authorization = token
   }
 
   request(
@@ -29,7 +34,7 @@ export class Client implements IClient {
     return axiosInstance.request({
       url: path,
       method,
-      headers,
+      headers: Object.assign({ Authorization: this._authorization }, headers),
       params,
     })
   }
