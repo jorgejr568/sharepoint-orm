@@ -23,9 +23,9 @@ export interface ITable {
   /**
    * SELECT
    */
-  select(columns: string[]): ITable
+  select(...columns: string[]): ITable
 
-  expand(lists: string[]): ITable
+  expand(...lists: string[]): ITable
 
   /**
    * ORDER

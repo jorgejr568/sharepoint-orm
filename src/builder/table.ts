@@ -30,12 +30,12 @@ export class Table implements ITable {
     return this
   }
 
-  select(columns: string[]): ITable {
+  select(...columns: string[]): ITable {
     this._select = columns
     return this
   }
 
-  expand(lists: string[]): ITable {
+  expand(...lists: string[]): ITable {
     this._expand = lists
     return this
   }
