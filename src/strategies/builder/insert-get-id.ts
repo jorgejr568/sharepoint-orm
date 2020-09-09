@@ -3,6 +3,6 @@ import { ITable } from '../../protocols'
 export async function InsertGetIdStrategy(
   table: ITable,
   values: Object
-): Promise<String> {
+): Promise<string> {
   return 'any_id'
 }

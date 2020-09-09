@@ -1,5 +1,5 @@
 export interface IWhere {
-  column: String
-  operator: String
-  value: String
+  column: string
+  operator: string
+  value: string
 }

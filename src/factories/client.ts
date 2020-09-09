@@ -1,6 +1,6 @@
-import axios, { AxiosInstance } from 'axios'
-import { IConfig } from '../protocols'
+import { IClient, IConfig } from '../protocols'
+import { Client } from '../client/client'
 
-export function ClientFactory(config: IConfig): AxiosInstance {
-  return axios.create({})
+export function ClientFactory(config: IConfig): IClient {
+  return new Client(config)
 }

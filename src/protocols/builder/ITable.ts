@@ -1,26 +1,26 @@
 import { ITableRows } from './ITableRows'
-import { AxiosInstance } from 'axios'
+import { IClient } from '..'
 
 export interface ITable {
   /**
    * GETTERS
    */
-  client(): AxiosInstance
+  client(): IClient
 
   /**
    * SELECT
    */
-  select(columns: String[]): ITable
+  select(columns: string[]): ITable
 
   /**
    * ORDER
    */
-  order(column: String, direction: String): ITable
+  order(column: string, direction: string): ITable
 
   /**
    * FILTER
    */
-  where(column: String, operator: String, value: String): ITable
+  where(column: string, operator: string, value: string): ITable
 
   /**
    * PAGINATION
@@ -32,7 +32,7 @@ export interface ITable {
    * ACTIONS
    */
   get(): Promise<ITableRows[]>
-  insertGetId(values: Object): Promise<String>
+  insertGetId(values: Object): Promise<string>
   update(values: Object): Promise<void>
   delete(): Promise<void>
 }
