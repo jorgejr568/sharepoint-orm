@@ -1,6 +1,26 @@
-import { ITable } from '../../protocols'
+import { ITable, IWhere } from '../../protocols'
 
 export async function UpdateStrategy(
   table: ITable,
   values: Object
-): Promise<void> {}
+): Promise<void> {
+  const idCondition = table._where.filter(
+    (condition: IWhere) => condition.column.toLowerCase() === 'id'
+  )[0]
+  if (!idCondition)
+    throw new Error('Id on where condition was not specified at UpdateStrategy')
+
+  await table.client().request(
+    'SP',
+    'POST',
+    `/_api/Web/Lists/GetByTitle('${table._table}')/Items(${idCondition.value})`,
+    {
+      contentType: 'application/json;odata=verbose',
+      accept: 'application/json;odata=verbose',
+      'IF-MATCH': '*',
+      'X-HTTP-Method': 'MERGE',
+    },
+    {},
+    values
+  )
+}
