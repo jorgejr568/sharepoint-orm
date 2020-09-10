@@ -14,6 +14,7 @@ export interface IClient {
     method: Method,
     path: string,
     headers?: object,
-    params?: object
+    params?: object,
+    data?: any
   ): Promise<AxiosResponse>
 }

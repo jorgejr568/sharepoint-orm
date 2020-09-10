@@ -26,7 +26,8 @@ export class Client implements IClient {
     method: Method,
     path: string,
     headers?: object,
-    params?: object
+    params?: object,
+    data?: any
   ): Promise<AxiosResponse> {
     let axiosInstance: AxiosInstance = this.spAxiosInstance
     if (instance.toLowerCase() === 'api') axiosInstance = this.apiAxiosInstance
@@ -36,6 +37,7 @@ export class Client implements IClient {
       method,
       headers: Object.assign({ Authorization: this._authorization }, headers),
       params,
+      data,
     })
   }
 }
