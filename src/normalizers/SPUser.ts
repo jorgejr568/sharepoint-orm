@@ -6,5 +6,5 @@ export const SPUserNormalizer = (spUser: any): IUserModel => ({
   email: spUser.Email,
   title: spUser.Title,
   username: spUser.LoginName,
-  groups: spUser.group.map(SPGroupNormalizer),
+  groups: spUser.Groups.map(SPGroupNormalizer),
 })

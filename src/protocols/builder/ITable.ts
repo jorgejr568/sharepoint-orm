@@ -1,4 +1,3 @@
-import { ITableRows } from './ITableRows'
 import { IClient, IOrder, IWhere } from '..'
 
 export interface ITable {
@@ -46,7 +45,7 @@ export interface ITable {
   /**
    * ACTIONS
    */
-  get(): Promise<ITableRows[]>
+  get(): Promise<any[]>
   insertGetId(values: Object): Promise<string>
   update(values: Object): Promise<void>
   delete(): Promise<void>

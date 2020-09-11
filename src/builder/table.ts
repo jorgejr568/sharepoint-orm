@@ -1,4 +1,4 @@
-import { IClient, IOrder, ITable, ITableRows, IWhere } from '../protocols'
+import { IClient, IOrder, ITable, IWhere } from '../protocols'
 import {
   DeleteStrategy,
   InsertGetIdStrategy,
@@ -68,7 +68,7 @@ export class Table implements ITable {
     return this
   }
 
-  async get(): Promise<ITableRows[]> {
+  async get(): Promise<any[]> {
     return SelectStrategy(this)
   }
   insertGetId(values: Object): Promise<string> {

@@ -11,10 +11,10 @@ export class User implements IUser {
     const { clientConfig } = this.client
     const { data: token } = await this.client.request(
       'API',
-      'POST',
+      'GET',
       `/api/token/GenerateTokenSP/${clientConfig.application}/${clientConfig.environment}/${clientConfig.tokenApi}`
     )
-    return `Bearer: ${token.toString()}`
+    return `Bearer ${token.toString()}`
   }
 
   async current(token: string): Promise<IUserModel> {

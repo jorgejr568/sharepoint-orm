@@ -1,11 +1,13 @@
-import { ITable, ITableRows } from '../../protocols'
+import { ITable } from '../../protocols'
 import { SPListItemNormalizer } from '../../normalizers'
 
-export async function SelectStrategy(table: ITable): Promise<ITableRows[]> {
+export async function SelectStrategy(table: ITable): Promise<any[]> {
   const selectFields = table._select.join(',')
   const expandableLists = table._expand.join(',')
 
-  const { data: items } = await table.client().request(
+  const {
+    data: { value: items },
+  } = await table.client().request(
     'SP',
     'GET',
     `/_api/web/lists/getbytitle('${table._table}')/items`,
