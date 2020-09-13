@@ -1,5 +1,6 @@
 import { IUserModel, IUser, IClient } from '../protocols'
 import { SPUserNormalizer } from '../normalizers'
+import { Builder } from '../builder'
 
 export class User implements IUser {
   private readonly client: IClient
@@ -14,7 +15,7 @@ export class User implements IUser {
       'GET',
       `/api/token/GenerateTokenSP/${clientConfig.application}/${clientConfig.environment}/${clientConfig.tokenApi}`
     )
-    return `Bearer ${token.toString()}`
+    return Builder.authorization(`Bearer ${token.toString()}`)
   }
 
   async current(token: string): Promise<IUserModel> {
