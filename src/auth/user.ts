@@ -18,13 +18,13 @@ export class User implements IUser {
     return Builder.authorization(`Bearer ${token.toString()}`)
   }
 
-  async current(token: string): Promise<IUserModel> {
+  async current(token?: string): Promise<IUserModel> {
     const { data: spUser } = await this.client.request(
       'SP',
       'GET',
       '/_api/web/currentuser/?$expand=groups',
       {
-        Authorization: token,
+        Authorization: token || Builder.authorization(),
       }
     )
 
