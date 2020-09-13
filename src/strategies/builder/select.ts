@@ -1,10 +1,8 @@
 import { ITable } from '../../protocols'
 import { SPListItemNormalizer } from '../../normalizers'
+import { WhereConditionToFilterStrategy } from '../WhereConditionToFilter'
 
 export async function SelectStrategy(table: ITable): Promise<any[]> {
-  const selectFields = table._select.join(',')
-  const expandableLists = table._expand.join(',')
-
   const {
     data: { value: items },
   } = await table.client().request(
@@ -13,11 +11,10 @@ export async function SelectStrategy(table: ITable): Promise<any[]> {
     `/_api/web/lists/getbytitle('${table._table}')/items`,
     {},
     {
-      $select: selectFields,
-      $expand: expandableLists,
+      $select: table._select.join(','),
+      $expand: table._expand.join(','),
+      $filter: WhereConditionToFilterStrategy(table._where),
       $orderby: table._order?.column,
-      $skiptoken: 'Paged',
-      $top: 5000,
     }
   )
 

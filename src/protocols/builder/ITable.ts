@@ -1,8 +1,8 @@
 import { IClient, IOrder, IWhere } from '..'
 
 export interface ITable {
-  _limit: Number
-  _offset: Number
+  _limit: number
+  _offset: number
   _select: string[]
   _expand: string[]
   _where: IWhere[]
@@ -39,8 +39,8 @@ export interface ITable {
   /**
    * PAGINATION
    */
-  limit(limit: Number): ITable
-  offset(offset: Number): ITable
+  limit(limit: number): ITable
+  offset(offset: number): ITable
 
   /**
    * ACTIONS

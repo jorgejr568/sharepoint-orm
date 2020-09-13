@@ -1,6 +1,6 @@
-import { IConfig, ITable } from '../protocols'
-import { Table } from '../builder'
+import { IConfig } from '../protocols'
 import { ClientFactory } from './client'
+import { Builder } from '../builder/builder'
 
-export const BuilderFactory = (config: IConfig) => (table: string): ITable =>
-  new Table(ClientFactory(config), table)
+export const BuilderFactory = (config: IConfig): Builder =>
+  new Builder(ClientFactory(config))

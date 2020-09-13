@@ -7,8 +7,8 @@ import {
 } from '../strategies'
 
 export class Table implements ITable {
-  _limit: Number = 10
-  _offset: Number = 0
+  _limit: number = 5000
+  _offset: number = 0
   _select: string[] = []
   _expand: string[] = []
   _where: IWhere[] = []
@@ -49,11 +49,11 @@ export class Table implements ITable {
     return this
   }
 
-  limit(limit: Number): ITable {
+  limit(limit: number): ITable {
     this._limit = limit
     return this
   }
-  offset(offset: Number): ITable {
+  offset(offset: number): ITable {
     this._offset = offset
     return this
   }
