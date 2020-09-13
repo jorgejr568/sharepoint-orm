@@ -35,7 +35,10 @@ export class User implements IUser {
     const { data: spUser } = await this.client.request(
       'SP',
       'GET',
-      `/_api/Web/GetUserById(${userId})?$expand=Groups`
+      `/_api/Web/GetUserById(${userId})?$expand=Groups`,
+      {
+        Authorization: Builder.authorization(),
+      }
     )
 
     return SPUserNormalizer(spUser)
