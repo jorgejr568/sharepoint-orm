@@ -1,17 +1,18 @@
-import { IClient, IOrder, ITable, IWhere } from '../protocols'
+import { IClient, IOrder, ITable, IWhere, TWhereOperator } from '../protocols'
 import {
   DeleteStrategy,
   InsertGetIdStrategy,
   SelectStrategy,
   UpdateStrategy,
 } from '../strategies'
+import { IWhereRaw } from '../protocols/builder/IWhereRaw'
 
 export class Table implements ITable {
   _limit: number = 5000
   _offset: number = 0
   _select: string[] = []
   _expand: string[] = []
-  _where: IWhere[] = []
+  _where: (IWhere | IWhereRaw)[] = []
   _order?: IOrder
   private readonly _client
   readonly _table: string
@@ -58,16 +59,6 @@ export class Table implements ITable {
     return this
   }
 
-  where(column: string, operator: string, value: string): ITable {
-    this._where.push({
-      column,
-      operator,
-      value,
-    })
-
-    return this
-  }
-
   async get(): Promise<any[]> {
     return SelectStrategy(this)
   }
@@ -79,5 +70,46 @@ export class Table implements ITable {
   }
   delete(): Promise<void> {
     return DeleteStrategy(this)
+  }
+
+  where(
+    column: string,
+    operator: TWhereOperator,
+    value: string,
+    not?: boolean,
+    or?: boolean
+  ): ITable {
+    this._where.push({
+      column,
+      operator,
+      value,
+      not,
+      or,
+    })
+    return this
+  }
+
+  orWhere(column: string, operator: TWhereOperator, value: string): ITable {
+    return this.where(column, operator, value, false, true)
+  }
+
+  orWhereNot(column: string, operator: TWhereOperator, value: string): ITable {
+    return this.where(column, operator, value, true, true)
+  }
+
+  whereNot(column: string, operator: TWhereOperator, value: string): ITable {
+    return this.where(column, operator, value, true, false)
+  }
+
+  whereRaw(raw: string, or?: boolean): ITable {
+    this._where.push({
+      raw,
+      or,
+    })
+    return this
+  }
+
+  orWhereRaw(raw: string): ITable {
+    return this.whereRaw(raw, true)
   }
 }

@@ -1,9 +1,11 @@
 import { ITable, IWhere } from '../../protocols'
+import { onlyWhereConditions } from '../WhereConditionToFilter'
 
 export async function DeleteStrategy(table: ITable): Promise<void> {
-  const idCondition = table._where.filter(
+  const idCondition = onlyWhereConditions(table._where).filter(
     (condition: IWhere) => condition.column.toLowerCase() === 'id'
   )[0]
+
   if (!idCondition)
     throw new Error('Id on where condition was not specified at DeleteStrategy')
 

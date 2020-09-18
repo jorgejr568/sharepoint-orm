@@ -1,12 +1,14 @@
-import { ITable, IWhere } from '../../protocols'
+import { ITable } from '../../protocols'
+import { onlyWhereConditions } from '../WhereConditionToFilter'
 
 export async function UpdateStrategy(
   table: ITable,
   values: Object
 ): Promise<void> {
-  const idCondition = table._where.filter(
-    (condition: IWhere) => condition.column.toLowerCase() === 'id'
+  const idCondition = onlyWhereConditions(table._where).filter(
+    (condition: any) => condition.column.toLowerCase() === 'id'
   )[0]
+
   if (!idCondition)
     throw new Error('Id on where condition was not specified at UpdateStrategy')
 
