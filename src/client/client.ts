@@ -1,11 +1,13 @@
 import { IClient, IConfig, TInstance } from '../protocols'
 import axios, { AxiosInstance, AxiosResponse, Method } from 'axios'
+import { AuthorizationKey } from '../auth'
 
 export class Client implements IClient {
   private readonly spAxiosInstance: AxiosInstance
   private readonly apiAxiosInstance: AxiosInstance
   readonly clientConfig: IConfig
   _authorization?: string
+  _isRequestDigest?: boolean
 
   constructor(clientConfig: IConfig) {
     this.clientConfig = clientConfig
@@ -17,8 +19,9 @@ export class Client implements IClient {
     })
   }
 
-  authorization(token: string) {
+  authorization(token: string, isRequestDigest?: boolean) {
     this._authorization = token
+    this._isRequestDigest = isRequestDigest
   }
 
   request(
@@ -35,7 +38,10 @@ export class Client implements IClient {
     return axiosInstance.request({
       url: path,
       method,
-      headers: Object.assign({ Authorization: this._authorization }, headers),
+      headers: Object.assign(
+        { [AuthorizationKey(this._isRequestDigest)]: this._authorization },
+        headers
+      ),
       params,
       data,
     })

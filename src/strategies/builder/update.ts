@@ -1,5 +1,5 @@
 import { ITable } from '../../protocols'
-import { onlyWhereConditions } from '../WhereConditionToFilter'
+import { onlyWhereConditions } from '../where-condition-to-filter'
 
 export async function UpdateStrategy(
   table: ITable,

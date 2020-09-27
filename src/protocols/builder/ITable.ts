@@ -18,7 +18,7 @@ export interface ITable {
   /**
    * SETTERS
    */
-  authorization(token: string): ITable
+  authorization(token: string, isRequestDigest?: boolean): ITable
 
   /**
    * SELECT

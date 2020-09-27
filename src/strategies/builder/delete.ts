@@ -1,5 +1,5 @@
 import { ITable, IWhere } from '../../protocols'
-import { onlyWhereConditions } from '../WhereConditionToFilter'
+import { onlyWhereConditions } from '../where-condition-to-filter'
 
 export async function DeleteStrategy(table: ITable): Promise<void> {
   const idCondition = onlyWhereConditions(table._where).filter(

@@ -26,8 +26,8 @@ export class Table implements ITable {
     return this._client
   }
 
-  authorization(token: string): ITable {
-    this._client.authorization(token)
+  authorization(token: string, isRequestDigest?: boolean): ITable {
+    this._client.authorization(token, isRequestDigest)
     return this
   }
 

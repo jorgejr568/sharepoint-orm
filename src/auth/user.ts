@@ -2,13 +2,27 @@ import { IUserModel, IUser, IClient } from '../protocols'
 import { SPUserNormalizer } from '../normalizers'
 import { Builder } from '../builder'
 
+export const AuthorizationKey = (isRequestDigest?: boolean) =>
+  (
+    typeof isRequestDigest === 'undefined'
+      ? Builder.requestDigest()
+      : isRequestDigest
+  )
+    ? 'X-REQUESTDIGEST'
+    : 'Authorization'
+
 export class User implements IUser {
   private readonly client: IClient
   constructor(client: IClient) {
     this.client = client
   }
 
-  async authorize(): Promise<string> {
+  async authorize(requestDigestToken?: string): Promise<string> {
+    if (requestDigestToken) {
+      Builder.requestDigest(true)
+      return Builder.authorization(requestDigestToken)
+    }
+
     const { clientConfig } = this.client
     const { data: token } = await this.client.request(
       'API',
@@ -24,7 +38,7 @@ export class User implements IUser {
       'GET',
       '/_api/web/currentuser/?$expand=groups',
       {
-        Authorization: token || Builder.authorization(),
+        [AuthorizationKey()]: token || Builder.authorization(),
       }
     )
 
@@ -37,7 +51,7 @@ export class User implements IUser {
       'GET',
       `/_api/Web/GetUserById(${userId})?$expand=Groups`,
       {
-        Authorization: Builder.authorization(),
+        [AuthorizationKey()]: Builder.authorization(),
       }
     )
 

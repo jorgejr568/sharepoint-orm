@@ -7,7 +7,7 @@ export interface IClient {
   readonly clientConfig: IConfig
   _authorization?: string
 
-  authorization(token: string): void
+  authorization(token: string, isRequestDigest?: boolean): void
 
   request(
     instance: TInstance,

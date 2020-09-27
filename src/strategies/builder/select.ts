@@ -1,6 +1,6 @@
 import { ITable } from '../../protocols'
 import { SPListItemNormalizer } from '../../normalizers'
-import { WhereConditionToFilterStrategy } from '../WhereConditionToFilter'
+import { WhereConditionToFilterStrategy } from '../where-condition-to-filter'
 
 export async function SelectStrategy(table: ITable): Promise<any[]> {
   const {
