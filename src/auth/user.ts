@@ -32,6 +32,16 @@ export class User implements IUser {
     return Builder.authorization(`Bearer ${token.toString()}`)
   }
 
+  async refreshToken(): Promise<string> {
+    const {
+      data: { FormDigestValue: token },
+    } = await this.client.request('SP', 'GET', `/_api/contextinfo`, {
+      [AuthorizationKey()]: Builder.authorization(),
+    })
+
+    return Builder.authorization(token)
+  }
+
   async current(token?: string): Promise<IUserModel> {
     const { data: spUser } = await this.client.request(
       'SP',
