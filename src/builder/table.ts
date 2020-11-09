@@ -62,6 +62,11 @@ export class Table implements ITable {
   async get(): Promise<any[]> {
     return SelectStrategy(this)
   }
+
+  async first(): Promise<any> {
+    return (await this.get())[0]
+  }
+
   insertGetId(values: Object): Promise<string> {
     return InsertGetIdStrategy(this, values)
   }
