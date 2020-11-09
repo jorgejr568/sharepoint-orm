@@ -21,15 +21,19 @@ export const WhereConditionToFilterStrategy = (conditions: TAnyWhere[]) =>
     .map((condition, index) => {
       if (isWhereRaw(condition)) {
         condition = <IWhereRaw>condition
-        return `${conjunction(index, condition.or)} ${condition.raw}`.trim()
+        return `${conjunction(index, condition.or)} ${condition.raw}`
       }
 
       condition = <IWhere>condition
       return `${conjunction(index, condition.or)} ${
         condition.column
-      } ${ternaryString(!!condition?.not, 'not')} ${condition.operator} ${
+      } ${ternaryString(!!condition?.not, 'not')} ${
+        condition.operator
+      } ${ternaryString(
+        typeof condition.value === 'string',
+        `'${condition.value.toString().replace(/'/g, `\\'`)}'`,
         condition.value
-      }`.trim()
+      )}`
     })
     .join(' ')
     .trim()

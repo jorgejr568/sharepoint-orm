@@ -1,4 +1,6 @@
+import { TOrderDirection } from '../types'
+
 export interface IOrder {
   column: string
-  direction: string
+  direction: TOrderDirection
 }

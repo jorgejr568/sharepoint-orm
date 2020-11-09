@@ -1,5 +1,6 @@
 import { IClient, IOrder, IWhere, TWhereOperator } from '..'
 import { IWhereRaw } from './IWhereRaw'
+import { TOrderDirection, TStringNumber } from '../types'
 
 export interface ITable {
   _limit: number
@@ -30,7 +31,7 @@ export interface ITable {
   /**
    * ORDER
    */
-  order(column: string, direction: string): ITable
+  order(column: string, direction: TOrderDirection): ITable
 
   /**
    * FILTER
@@ -38,13 +39,26 @@ export interface ITable {
   where(
     column: string,
     operator: TWhereOperator,
-    value: string,
+    value: TStringNumber,
     not?: boolean,
     or?: boolean
   ): ITable
-  orWhere(column: string, operator: TWhereOperator, value: string): ITable
-  whereNot(column: string, operator: TWhereOperator, value: string): ITable
-  orWhereNot(column: string, operator: TWhereOperator, value: string): ITable
+  orWhere(
+    column: string,
+    operator: TWhereOperator,
+    value: TStringNumber
+  ): ITable
+  whereNot(
+    column: string,
+    operator: TWhereOperator,
+    value: TStringNumber
+  ): ITable
+  orWhereNot(
+    column: string,
+    operator: TWhereOperator,
+    value: TStringNumber
+  ): ITable
+
   whereRaw(raw: string, or?: boolean): ITable
   orWhereRaw(raw: string): ITable
 

@@ -6,6 +6,8 @@ import {
   UpdateStrategy,
 } from '../strategies'
 import { IWhereRaw } from '../protocols/builder/IWhereRaw'
+import { TStringNumber } from '../protocols/types/StringOrNumber'
+import { TOrderDirection } from '../protocols/types/OrderDirection'
 
 export class Table implements ITable {
   _limit: number = 5000
@@ -41,7 +43,7 @@ export class Table implements ITable {
     return this
   }
 
-  order(column: string, direction: string = 'ASC'): ITable {
+  order(column: string, direction: TOrderDirection = 'ASC'): ITable {
     this._order = {
       column,
       direction,
@@ -80,7 +82,7 @@ export class Table implements ITable {
   where(
     column: string,
     operator: TWhereOperator,
-    value: string,
+    value: TStringNumber,
     not?: boolean,
     or?: boolean
   ): ITable {
@@ -94,15 +96,27 @@ export class Table implements ITable {
     return this
   }
 
-  orWhere(column: string, operator: TWhereOperator, value: string): ITable {
+  orWhere(
+    column: string,
+    operator: TWhereOperator,
+    value: TStringNumber
+  ): ITable {
     return this.where(column, operator, value, false, true)
   }
 
-  orWhereNot(column: string, operator: TWhereOperator, value: string): ITable {
+  orWhereNot(
+    column: string,
+    operator: TWhereOperator,
+    value: TStringNumber
+  ): ITable {
     return this.where(column, operator, value, true, true)
   }
 
-  whereNot(column: string, operator: TWhereOperator, value: string): ITable {
+  whereNot(
+    column: string,
+    operator: TWhereOperator,
+    value: TStringNumber
+  ): ITable {
     return this.where(column, operator, value, true, false)
   }
 

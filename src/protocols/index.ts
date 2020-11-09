@@ -9,3 +9,5 @@ export * from './builder/IOrder'
 export * from './auth/IUser'
 export * from './auth/IGroupModel'
 export * from './auth/IUserModel'
+
+export * from './types'
