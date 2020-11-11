@@ -865,13 +865,6 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@jorgejr568/sharepoint-orm@^1.3.1":
-  version "1.3.1"
-  resolved "https://registry.yarnpkg.com/@jorgejr568/sharepoint-orm/-/sharepoint-orm-1.3.1.tgz#275702dd5a8ef1dc76b88cc7f5c3ff9f205e4be6"
-  integrity sha512-/oBTEbuXFXWkAdtsPfGdZYWeA0UznyCJcbLwsR9Zk+XZiTlkUEQg6ilsisPCGRze6QX+ufprPezE5LCpV2xQ7g==
-  dependencies:
-    axios "^0.20.0"
-
 "@nicolo-ribaudo/chokidar-2@^2.1.8":
   version "2.1.8"
   resolved "https://registry.yarnpkg.com/@nicolo-ribaudo/chokidar-2/-/chokidar-2-2.1.8.tgz#eef8d9b47e8dc589499f14d656e8d2dd978c3d14"
@@ -937,10 +930,10 @@ atob@^2.1.2:
   resolved "https://registry.yarnpkg.com/atob/-/atob-2.1.2.tgz#6d9517eb9e030d2436666651e86bd9f6f13533c9"
   integrity sha512-Wm6ukoaOGJi/73p/cl2GvLjTI5JM1k/O14isD73YML8StrH/7/lRFgmg8nICZgD3bZZvjwCGxtMOD3wWNAu8cg==
 
-axios@^0.20.0:
-  version "0.20.0"
-  resolved "https://registry.yarnpkg.com/axios/-/axios-0.20.0.tgz#057ba30f04884694993a8cd07fa394cff11c50bd"
-  integrity sha512-ANA4rr2BDcmmAQLOKft2fufrtuvlqR+cXNNinUmvfeSNCOF98PZL+7M/v1zIdGo7OLjEA9J2gXJL+j4zGsl0bA==
+axios@^0.21.0:
+  version "0.21.0"
+  resolved "https://registry.yarnpkg.com/axios/-/axios-0.21.0.tgz#26df088803a2350dff2c27f96fef99fe49442aca"
+  integrity sha512-fmkJBknJKoZwem3/IKSSLpkdNXZeBu5Q7GA/aRsr2btgrptmSCxi2oFjZHqGdK9DoTil9PIHlPIZw2EcRJXRvw==
   dependencies:
     follow-redirects "^1.10.0"
 
@@ -1448,6 +1441,11 @@ has@^1.0.3:
   integrity sha512-f2dvO0VU6Oej7RkWJGrehjbzMAjFp5/VKPp5tTpWIV4JHHZK1/BxbFRtf/siA2SWTe09caDmVtYYzWEIbBS4zw==
   dependencies:
     function-bind "^1.1.1"
+
+husky@^5.0.0-beta.0:
+  version "5.0.0-beta.0"
+  resolved "https://registry.yarnpkg.com/husky/-/husky-5.0.0-beta.0.tgz#b09c5a7da1da884cfd9ff0d7cfd328b77e068516"
+  integrity sha512-gemLvVKIeuSuu+xp+hY5DUNjNSNk4YIgdsFhC3Wwv6tpc8VIGNR+0g+5uOpsiNNlAekcaMfO06mwSSokqLAlhQ==
 
 inflight@^1.0.4:
   version "1.0.6"

@@ -1,7 +1,7 @@
 {
   "name": "@jorgejr568/sharepoint-orm",
   "type": "package",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "description": "Lib to consume sharepoint using axios",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
@@ -15,7 +15,8 @@
     "build:types": "tsc --emitDeclarationOnly",
     "build:js": "babel src --out-dir lib --extensions \".ts,.tsx\" --source-maps inline",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "prepublish": "npm run build"
+    "prepublish": "npm run build",
+    "postinstall": "husky install"
   },
   "keywords": [
     "sharepoint",
@@ -27,7 +28,7 @@
   "author": "Jorge Junior <jorge.junior.568@live.com>",
   "license": "ISC",
   "dependencies": {
-    "axios": "^0.20.0"
+    "axios": "^0.21.0"
   },
   "devDependencies": {
     "@babel/cli": "^7.8.3",
@@ -35,6 +36,7 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/preset-env": "^7.8.3",
     "@babel/preset-typescript": "^7.8.3",
+    "husky": "^5.0.0-beta.0",
     "prettier": "^2.1.1",
     "typescript": "^4.0.2"
   },
