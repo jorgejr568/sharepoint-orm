@@ -24,8 +24,8 @@ Create an __plugins/sharepoint-orm.js__ file to place your configuration. We'll 
 import { AuthFactory, BuilderFactory} from '@jorgejr568/sharepoint-orm'
 
 const config = {
-  apiUrl: process.env.API_URL, //'https://app.capacity.tvglobo.com.br',
-  spUrl: process.env.SHAREPOINT_URL, //'https://tvglobocorp.sharepoint.com/sites/dtap/[portal name]',
+  apiUrl: process.env.API_URL,
+  spUrl: process.env.SHAREPOINT_URL,
   tokenApi: process.env.API_TOKEN,
   application: process.env.APP_NAME, //'[uppercase and only letters portal name]',
   environment: process.env.APP_ENVIRONMENT //'DEV or PRD'
