@@ -15,6 +15,8 @@ export async function SelectStrategy(table: ITable): Promise<any[]> {
       $expand: table._expand.join(','),
       $filter: WhereConditionToFilterStrategy(table._where),
       $orderby: table._order?.column,
+      $skiptoken: 'Paged=TRUE',
+      $top: 5000,
     }
   )
 
