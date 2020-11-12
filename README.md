@@ -93,24 +93,161 @@ catch(e){
 
 ### Simple select
 ```js
-import { spBuilder } from '@/plugins/sharepoint-orm'
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
 
-const items = spBuilder.table('ListName').select('*').get()
+await spAuth.authorize()
+const items = await spBuilder.table('ListName').select('*').get()
 console.log({ items })
 ```
 
 #### Available select methods
 
 - where
+```js
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
+
+await spAuth.authorize()
+const items = await spBuilder
+  .table('ListName')
+  .select('*')
+  .where('Id', 'eq', 1)
+  .get()
+console.log({ items })
+
+// And condition
+
+const items = await spBuilder
+  .table('ListName')
+  .select('*')
+  .where('Id', 'eq', 1)
+  .where('Title', 'eq', 'Player name')
+  .get()
+console.log({ items })
+```
 - orWhere
+```js
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
+
+await spAuth.authorize()
+const items = await spBuilder
+  .table('ListName')
+  .select('*')
+  .where('Id', 'eq', 1)
+  .orWhere('Id', 'eq', 2)
+  .get()
+console.log({ items })
+```
 - whereNot
+```js
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
+
+await spAuth.authorize()
+const items = await spBuilder
+  .table('ListName')
+  .select('*')
+  .whereNot('Id', 'eq', 1)
+  .get()
+console.log({ items })
+```
 - orWhereNot
+```js
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
+
+await spAuth.authorize()
+const items = await spBuilder
+  .table('ListName')
+  .select('*')
+  .whereNot('Id', 'eq', 1)
+  .orWhereNot('Title', 'eq', 'Player name')
+  .get()
+console.log({ items })
+```
 - whereRaw
+```js
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
+
+await spAuth.authorize()
+const items = await spBuilder
+  .table('ListName')
+  .select('*')
+  .whereRaw('Id eq 1')
+  .get()
+console.log({ items })
+```
+
 - orWhereRaw
+```js
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
+
+await spAuth.authorize()
+const items = await spBuilder
+  .table('ListName')
+  .select('*')
+  .whereRaw('Id eq 1')
+  .orWhereRaw(`Title eq 'Player name'`)
+  .get()
+console.log({ items })
+```
 
 ### Available leaf methods
 
 - get
+```js
+// List all items
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
+
+await spAuth.authorize()
+const items = await spBuilder.table('ListName').select('*').get()
+console.log({ items })
+```
+
+- first
+```js
+// Get only first item or undefined
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
+
+await spAuth.authorize()
+const item = await spBuilder
+  .table('ListName')
+  .select('*')
+  .where('Id', 'eq', 1)
+  .first()
+console.log({ item })
+```
 - insertGetId
+```js
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
+
+await spAuth.authorize()
+const insertedId = await spBuilder
+  .table('ListName')
+  .insertGetId({
+    Title: 'Player name'
+  })
+console.log({ insertedId })
+```
 - update -> Must pass a where condition with id column
+```js
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
+
+await spAuth.authorize()
+// Void return
+await spBuilder
+  .table('ListName')
+  .where('Id', 'eq', 1)
+  .update({
+    Title: 'New player name'
+  })
+```
 - delete -> Must pass a where condition with id column
+
+```js
+import { spAuth, spBuilder } from '@/plugins/sharepoint-orm'
+
+await spAuth.authorize()
+// Void return
+await spBuilder
+  .table('ListName')
+  .where('Id', 'eq', 1)
+  .delete()
+```
