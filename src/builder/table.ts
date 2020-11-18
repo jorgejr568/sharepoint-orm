@@ -69,6 +69,10 @@ export class Table implements ITable {
     return (await this.get())[0]
   }
 
+  async last(): Promise<any> {
+    return (await this.get()).reverse()[0]
+  }
+
   insertGetId(values: Object): Promise<string> {
     return InsertGetIdStrategy(this, values)
   }

@@ -73,6 +73,7 @@ export interface ITable {
    */
   get(): Promise<any[]>
   first(): Promise<any>
+  last(): Promise<any>
 
   insertGetId(values: Object): Promise<string>
   update(values: Object): Promise<void>

@@ -1,7 +1,7 @@
 {
   "name": "@jorgejr568/sharepoint-orm",
   "type": "package",
-  "version": "1.3.8",
+  "version": "1.3.9",
   "description": "Lib to consume sharepoint using axios",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",
