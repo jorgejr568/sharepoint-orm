@@ -8,15 +8,16 @@ export async function SelectStrategy(table: ITable): Promise<any[]> {
   } = await table.client().request(
     'SP',
     'GET',
-    `/_api/web/lists/getbytitle('${table._table}')/items`,
+    `/_api/web/lists/getbytitle('${
+      table._table
+    }')/items?$filter=${WhereConditionToFilterStrategy(table._where)}`,
     {},
     {
       $select: table._select.join(','),
       $expand: table._expand.join(','),
-      $filter: WhereConditionToFilterStrategy(table._where),
-      $orderby: table._order?.column,
+      $orderby: table._order?.column || '',
       $skiptoken: 'Paged=TRUE',
-      $top: 5000,
+      $top: table._limit,
     }
   )
 
