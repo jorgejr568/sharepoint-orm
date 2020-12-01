@@ -1,6 +1,7 @@
-import { IUserModel, IUser, IClient } from '../protocols'
+import { IClient, IUser, IUserModel } from '../protocols'
 import { SPUserNormalizer } from '../normalizers'
 import { Builder } from '../builder'
+import { GetProfilePictureUrlStrategy } from '../strategies/auth/profile-picture'
 
 export const AuthorizationKey = (isRequestDigest?: boolean) =>
   (
@@ -52,7 +53,10 @@ export class User implements IUser {
       }
     )
 
-    return SPUserNormalizer(spUser)
+    return SPUserNormalizer(
+      spUser,
+      GetProfilePictureUrlStrategy(this.client.clientConfig.spUrl, spUser.email)
+    )
   }
 
   async impersonate(userId: string): Promise<IUserModel> {
@@ -65,6 +69,9 @@ export class User implements IUser {
       }
     )
 
-    return SPUserNormalizer(spUser)
+    return SPUserNormalizer(
+      spUser,
+      GetProfilePictureUrlStrategy(this.client.clientConfig.spUrl, spUser.email)
+    )
   }
 }

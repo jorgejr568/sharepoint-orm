@@ -6,4 +6,5 @@ export interface IUserModel {
   title: string
   username: string
   groups: IGroupModel[]
+  profile_picture: string
 }
